@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block title %}Fale conosco{% endblock %}
+
+{% block corpo %}
+<div class="caixa-form">
+  <h1 class="titulo-secao">Fale conosco</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'form_campos.html' %}
+    <button type="submit" class="btn btn-pet btn-grande">Enviar mensagem</button>
+  </form>
+</div>
+{% endblock %}

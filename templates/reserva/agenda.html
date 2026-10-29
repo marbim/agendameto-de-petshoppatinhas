@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block title %}Minha agenda{% endblock %}
+
+{% block content %}
+<h1 class="titulo-secao">Minha agenda</h1>
+
+{% if reservas %}
+  <div class="lista-agenda">
+    {% for r in reservas %}
+      <article class="item-agenda">
+        <div class="item-data">
+          <strong>{{ r.data|date:"d" }}</strong>
+          <span>{{ r.data|date:"M"|lower }}</span>
+        </div>
+        <div class="item-info">
+          <h2>{{ r.get_servico_display }} <small>para {{ r.nomedopet }}</small></h2>
+          <p>
+            {{ r.get_turno_display }} &middot; porte {{ r.get_tamanho_display|lower }}
+            &middot; {{ r.nomedodono }} ({{ r.telefone }})
+          </p>
+        </div>
+        <form method="post" action="{% url 'cancelar' r.pk %}" onsubmit="return confirm('Cancelar este agendamento?');">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-pet btn-sm">Cancelar</button>
+        </form>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="vazio">
+    <p>Você ainda não tem agendamentos.</p>
+    <a href="{% url 'servicos' %}" class="btn btn-pet">Agendar um serviço</a>
+  </div>
+{% endif %}
+{% endblock %}

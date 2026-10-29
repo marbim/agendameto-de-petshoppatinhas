@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Agendar{% endblock %}
+
+{% block content %}
+<div class="caixa-form">
+  <h1 class="titulo-secao">Agendar serviço</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'form_campos.html' %}
+    <button type="submit" class="btn btn-pet btn-grande">Confirmar agendamento</button>
+    <a href="{% url 'servicos' %}" class="btn btn-link text-secondary">Voltar</a>
+  </form>
+</div>
+{% endblock %}

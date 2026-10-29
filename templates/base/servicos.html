@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %}Serviços{% endblock %}
+
+{% block content %}
+<section class="banner" aria-label="Promoção">
+  <svg class="banner-pata banner-pata-1" width="120" height="120"><use href="#pata"/></svg>
+  <svg class="banner-pata banner-pata-2" width="70" height="70"><use href="#pata"/></svg>
+  <div class="banner-texto">
+    <p class="banner-chamada">Mais cuidado,<br><em>mais carinho</em></p>
+  </div>
+  <div class="banner-oferta">
+    <span class="banner-pequeno">Cadastre-se e garanta</span>
+    <strong class="banner-off">15<small>%</small> OFF</strong>
+    <span class="banner-pequeno">no Banho &amp; Tosa</span>
+  </div>
+</section>
+
+<h1 class="titulo-secao">Agende o serviço com nossos profissionais</h1>
+
+<div class="cards-servico">
+  {% for s in servicos %}
+    <article class="card-servico">
+      <div class="card-icone"><i class="bi {{ s.icone }}"></i></div>
+      <h2>{{ s.nome }}</h2>
+      <p>{{ s.descricao }}</p>
+      <a class="btn btn-pet" href="{% url 'agendar_servico' s.slug %}">Agendar</a>
+    </article>
+  {% endfor %}
+</div>
+{% endblock %}
